@@ -1,0 +1,3 @@
+- if 1st letter is capital --> rest of the string could be small;
+- if 1st letter is capital --> rest of the string should also be capital;
+- if 1st letter is small --> rest of the string should also be small;
