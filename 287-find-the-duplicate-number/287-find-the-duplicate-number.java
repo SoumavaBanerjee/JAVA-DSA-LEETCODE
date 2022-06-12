@@ -1,20 +1,24 @@
 class Solution {
     public int findDuplicate(int[] nums) {
         
-        // method 2 --> frequency array
+        // method 3 --> floyd's cycle detection
         int n = nums.length;
         
-        Map<Integer, Integer> map = new HashMap<>();
+        int fast = nums[0];
+        int slow = nums[0];
         
-        for(int i = 0; i < nums.length; i++) {
-            map.put(nums[i], map.getOrDefault(nums[i],0) + 1);
+        do {
+            fast = nums[nums[fast]];
+            slow = nums[slow];
+        } while(fast != slow);
+            
+        fast = nums[0];
+        
+        while(fast != slow) {
+            fast = nums[fast];
+            slow = nums[slow];
         }
         
-        for( Map.Entry<Integer,Integer> pair : map.entrySet()) {
-            if(pair.getValue() > 1)
-                return pair.getKey();
-        }
-        
-        return -1;
+        return slow;
     }
 }
